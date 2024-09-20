@@ -1,4 +1,4 @@
-﻿public enum Pickups
+﻿public enum PickupType
 {
     Money,
     Bottle

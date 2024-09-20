@@ -12,6 +12,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _limitValue;
     [SerializeField] private Transform _characterTransform;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private ParticleSystem _moneyVfx;
+    [SerializeField] private ParticleSystem _bottleVfx;
 
     private CharacterTrigger _characterTrigger;
     private InputAction _steerAction;
@@ -62,15 +64,34 @@ public class CharacterController : MonoBehaviour
     private void SubscribeToEvents()
     {
         _characterTrigger.FinishTriggered += OnFinishReached;
+        _characterTrigger.PickupTriggered += OnPickupTriggered;
     }
     
     private void UnsubscribeFromEvents()
     {
         _characterTrigger.FinishTriggered -= OnFinishReached;
+        _characterTrigger.PickupTriggered -= OnPickupTriggered;
     }
     
     private void OnFinishReached()
     {
         FinishReached?.Invoke();
+    }
+    
+    private void OnPickupTriggered(int points, PickupType pickupType)
+    {
+        switch (pickupType)
+        {
+            case PickupType.Money:
+                _moneyVfx.Play();
+                break;
+            
+            case PickupType.Bottle:
+                _bottleVfx.Play();
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
