@@ -8,7 +8,7 @@ public class GameStateMachine : IStateSwitcher
     private List<IState> _states = new List<IState>();
     private IState _currentState;
 
-    public GameStateMachine(CharacterController character)
+    public GameStateMachine(Character character)
     {
         StateMachineData data = new StateMachineData();
 

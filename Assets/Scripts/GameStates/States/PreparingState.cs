@@ -5,13 +5,13 @@ public class PreparingState : IState
 {
     protected readonly IStateSwitcher StateSwitcher;
     protected readonly StateMachineData Data;
-    protected readonly CharacterController character;
+    protected readonly Character character;
     
-    public PreparingState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
+    public PreparingState(IStateSwitcher stateSwitcher, StateMachineData data, Character characterControllerRefactoring)
     {
         StateSwitcher = stateSwitcher;
         Data = data;
-        character = characterController;
+        character = characterControllerRefactoring;
     }
 
     public void Enter()
@@ -34,15 +34,15 @@ public class PreparingState : IState
     
     protected virtual void AddInputActionsCallbacks()
     {
-        character.ClickAction.performed += OnInteracted;
+        character.Input.Player.Click.performed += OnClicked;
     }
     
     protected virtual void RemoveInputActionsCallbacks()
     {
-        character.ClickAction.performed -= OnInteracted;
+        character.Input.Player.Click.performed -= OnClicked;
     }
     
-    private void OnInteracted(InputAction.CallbackContext context)
+    private void OnClicked(InputAction.CallbackContext context)
     {
         StateSwitcher.SwitchState<RunState>();
     }

@@ -6,13 +6,13 @@ public class RunState : IState
 {
     protected readonly IStateSwitcher StateSwitcher;
     protected readonly StateMachineData Data;
-    protected readonly CharacterController Character;
+    protected readonly Character Character;
     
-    public RunState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
+    public RunState(IStateSwitcher stateSwitcher, StateMachineData data, Character character)
     {
         StateSwitcher = stateSwitcher;
         Data = data;
-        Character = characterController;
+        Character = character;
     }
 
     public void Enter()
@@ -32,7 +32,6 @@ public class RunState : IState
 
     public void Update()
     {
-        MoveCharacter();
     }
     
     private void SubscribeToCharacterEvents()
@@ -44,12 +43,7 @@ public class RunState : IState
     {
         Character.FinishReached -= OnFinishReached;
     }
-    
-    private void MoveCharacter()
-    {
-        Character.transform.Translate(Vector3.forward * (Character.MoveSpeed * Time.deltaTime));
-    }
-    
+
     private void OnFinishReached()
     {
         StateSwitcher.SwitchState<EndState>();

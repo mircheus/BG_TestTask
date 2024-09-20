@@ -227,9 +227,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 151263874}
-  - component: {fileID: 151263875}
+  - component: {fileID: 151263877}
+  - component: {fileID: 151263876}
   m_Layer: 0
-  m_Name: CharacterController
+  m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +253,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &151263875
+--- !u!114 &151263876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,15 +262,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 151263873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecf457dbbc777614fa1b80399e522c05, type: 3}
+  m_Script: {fileID: 11500000, guid: bca8710b792f4cffb080e3f5c8421e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerControls: {fileID: -944628639613478452, guid: df51d901b8c171540a2519ec56c3f0cb, type: 3}
-  _limitValue: 1.2
-  _characterTransform: {fileID: 1052678703}
-  moveSpeed: 4
   _moneyVfx: {fileID: 1868609054}
   _bottleVfx: {fileID: 633998218}
+--- !u!114 &151263877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151263873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19347965853db848afb15a4baa38a39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _steeringLimitValue: 2
+  _moveSpeed: 5
+  _view: {fileID: 151263876}
+  _characterTrigger: {fileID: 1052678706}
 --- !u!1001 &290364096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1339,7 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c690c2c98a2fc0141a21d95aa2d2d175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 151263875}
+  _character: {fileID: 151263877}
 --- !u!1 &1663231535
 GameObject:
   m_ObjectHideFlags: 0

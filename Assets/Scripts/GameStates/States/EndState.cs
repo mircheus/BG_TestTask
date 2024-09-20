@@ -6,18 +6,17 @@ public class EndState : IState
 {
     protected readonly IStateSwitcher StateSwitcher;
     protected readonly StateMachineData Data;
-    protected readonly CharacterController Character;
+    protected readonly Character Character;
     
-    public EndState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
+    public EndState(IStateSwitcher stateSwitcher, StateMachineData data, Character character)
     {
         StateSwitcher = stateSwitcher;
         Data = data;
-        Character = characterController;
+        Character = character;
     }
     
     public void Enter()
     {
-        Debug.Log("enter EndState");
     }
 
     public void Exit()
