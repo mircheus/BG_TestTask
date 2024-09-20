@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PreparingState : IState
 {
+    protected readonly IStateSwitcher StateSwitcher;
     protected readonly StateMachineData Data;
     protected readonly CharacterController character;
     
-    public PreparingState(StateMachineData data, CharacterController characterController)
+    public PreparingState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
     {
+        StateSwitcher = stateSwitcher;
         Data = data;
         character = characterController;
     }
@@ -42,6 +44,6 @@ public class PreparingState : IState
     
     private void OnInteracted(InputAction.CallbackContext context)
     {
-        Debug.Log("Interacted!");
+        StateSwitcher.SwitchState<RunState>();
     }
 }

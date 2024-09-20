@@ -4,30 +4,54 @@ using UnityEngine;
 
 public class RunState : IState
 {
+    protected readonly IStateSwitcher StateSwitcher;
     protected readonly StateMachineData Data;
+    protected readonly CharacterController Character;
     
-    public RunState(StateMachineData data)
+    public RunState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
     {
+        StateSwitcher = stateSwitcher;
         Data = data;
+        Character = characterController;
     }
 
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Enter RunState");
+        SubscribeToCharacterEvents();
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
+        UnsubscribeFromCharacterEvents();
     }
 
     public void HandleInput()
     {
-        throw new System.NotImplementedException();
     }
 
     public void Update()
     {
-        throw new System.NotImplementedException();
+        MoveCharacter();
+    }
+    
+    private void SubscribeToCharacterEvents()
+    {
+        Character.FinishReached += OnFinishReached;
+    }
+    
+    private void UnsubscribeFromCharacterEvents()
+    {
+        Character.FinishReached -= OnFinishReached;
+    }
+    
+    private void MoveCharacter()
+    {
+        Character.transform.Translate(Vector3.forward * (Character.MoveSpeed * Time.deltaTime));
+    }
+    
+    private void OnFinishReached()
+    {
+        StateSwitcher.SwitchState<EndState>();
     }
 }

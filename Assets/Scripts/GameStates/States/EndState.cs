@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class EndState : IState
 {
+    protected readonly IStateSwitcher StateSwitcher;
+    protected readonly StateMachineData Data;
+    protected readonly CharacterController Character;
+    
+    public EndState(IStateSwitcher stateSwitcher, StateMachineData data, CharacterController characterController)
+    {
+        StateSwitcher = stateSwitcher;
+        Data = data;
+        Character = characterController;
+    }
+    
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("enter EndState");
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     public void HandleInput()
     {
-        throw new System.NotImplementedException();
     }
 
     public void Update()
     {
-        throw new System.NotImplementedException();
     }
 }

@@ -19,4 +19,10 @@ public class GameManager : MonoBehaviour
         _character.Init();
         _gameStateMachine = new GameStateMachine(_character);
     }
+    
+    private void Update()
+    {
+        _gameStateMachine.HandleInput();
+        _gameStateMachine.Update();
+    }
 }
