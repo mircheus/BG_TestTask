@@ -12,21 +12,20 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private Transform _characterTransform;
     
     private InputAction _steerAction;
-
-    private void Awake()
-    {
-        var playerActionMap = _playerControls.FindActionMap("Player");
-        _steerAction = playerActionMap.FindAction("Steering");
-    }
+    private InputAction _clickAction;
+    
+    public InputAction ClickAction => _clickAction;
     
     private void OnEnable()
     {
         _steerAction.Enable();
+        _clickAction.Enable();
     }
 
     private void OnDisable()
     {
         _steerAction.Disable();
+        _clickAction.Disable();
     }
     
     private void Update()
@@ -35,13 +34,19 @@ public class CharacterController : MonoBehaviour
         _characterTransform.transform.localPosition = new Vector3(xPosition, 0, 0);
     }
 
+    public void Init()
+    {
+        var playerActionMap = _playerControls.FindActionMap("Player");
+        _steerAction = playerActionMap.FindAction("Steering");
+        _clickAction = playerActionMap.FindAction("Click");
+    }
+
     private float CalculateXPosition()
     {
         float xPos = _steerAction.ReadValue<Vector2>().x;
         float halfScreen = Screen.width / 2;
         float inputValue = (xPos - halfScreen) / halfScreen;
         float resultXPosition = Mathf.Clamp(inputValue * _limitValue, -_limitValue, _limitValue);
-        Debug.Log("X Position: " + inputValue);
         return resultXPosition;
     }
 }
