@@ -20,7 +20,6 @@ public class IdleState : CharacterState
     {
         View.StartIdling();
         AddInputActionsCallbacks();
-        Debug.Log("Enter IdleState");
     }
 
     public override void Exit()

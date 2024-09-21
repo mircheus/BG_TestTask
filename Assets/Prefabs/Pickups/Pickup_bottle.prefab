@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupTypeType: 1
   _pickupModel: {fileID: 7753132955807578863}
-  _pointsValue: -4
+  _pointsValue: -1
 --- !u!1 &7753132955807578863
 GameObject:
   m_ObjectHideFlags: 0

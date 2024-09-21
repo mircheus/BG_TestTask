@@ -20,11 +20,13 @@ public class MoveState : CharacterState
         View.StartMoving();
         _limitValue = Character.SteeringLimitValue;
         _steerAction = Character.Input.Player.Steering;
+        Character.CharacterTrigger.FinishTriggered += OnFinishTriggered;
     }
 
     public override void Exit()
     {
         View.StopMoving();
+        Character.CharacterTrigger.FinishTriggered -= OnFinishTriggered;
     }
 
     public override void HandleInput()
@@ -57,5 +59,10 @@ public class MoveState : CharacterState
     private void MoveForward()
     {
         Character.transform.Translate(Vector3.forward * (Character.MoveSpeed * Time.deltaTime));
+    }
+    
+    private void OnFinishTriggered()
+    {
+        StateSwitcher.SwitchState<DanceState>();
     }
 }

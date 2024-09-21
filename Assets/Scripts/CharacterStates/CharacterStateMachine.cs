@@ -16,6 +16,7 @@ public class CharacterStateMachine : IStateSwitcher
         {
             new IdleState(this, data, character),
             new MoveState(this, data, character),
+            new DanceState(this, data, character)
         };
         
         _currentState = _states[0];

@@ -76,8 +76,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f374eaeb719ce4ab98d6fcf3ac4fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupTypeType: 0
   _pickupModel: {fileID: 1946986879177344614}
-  _pointsValue: 20
+  _pointsValue: 1
 --- !u!1 &1712634021819230968
 GameObject:
   m_ObjectHideFlags: 0
